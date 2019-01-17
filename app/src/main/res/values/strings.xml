@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">Oblig</string>
-    <string name="title_activity_quiz_menu">QuizMenu</string>
+    <string name="app_name">QuizApp</string>
+    <string name="title_activity_main_menu">MainMenu</string>
 </resources>

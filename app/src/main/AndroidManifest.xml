@@ -9,10 +9,21 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+        <activity android:name=".activities.AddPerson">
+        </activity>
+        <activity android:name=".activities.PersonList">
+        </activity>
+        <activity android:name=".activities.Quiz">
+        </activity>
         <activity
-                android:name=".QuizMenu"
-                android:label="@string/title_activity_quiz_menu"
+                android:name=".activities.MainMenu"
+                android:label="@string/title_activity_main_menu"
                 android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
