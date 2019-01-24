@@ -49,7 +49,7 @@ public class Quiz extends AppCompatActivity {
         currentName = currentPerson.getName();
 
         ImageView imageView = (ImageView) findViewById(R.id.imageView);
-        imageView.setImageResource(currentPerson.getPicture());
+        //imageView.setImageResource(currentPerson.getPicture());
     }
 
     public void onNameEntered(View view){
@@ -69,10 +69,10 @@ public class Quiz extends AppCompatActivity {
 
 
     public void populateDB(){
-        Person p1 = new Person(1,"DANIEL", R.drawable.picturedaniel);
-        Person p2 = new Person(2,"ENDRE", R.drawable.pictureendre);
-        list.add(p1);
-        list.add(p2);
+        //Person p1 = new Person(1,"DANIEL", R.drawable.picturedaniel);
+        //Person p2 = new Person(2,"ENDRE", R.drawable.pictureendre);
+        //list.add(p1);
+        //list.add(p2);
     }
 
 

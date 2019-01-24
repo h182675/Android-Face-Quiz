@@ -1,5 +1,6 @@
 package com.android.oblig.activities;
 
+import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,9 +9,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import androidx.room.Room;
 import com.android.oblig.R;
 import com.android.oblig.modules.AppDatabase;
+import com.android.oblig.modules.PersonDao;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,6 +22,7 @@ public class MainMenu extends AppCompatActivity {
 
     public final static String debugTag = "ViewSamples";
     public static AppDatabase db;
+    private PersonDao pd =null;
 
     void prepareMenu() {
         addMenuItem("AddPerson", AddPerson.class);
@@ -33,8 +35,10 @@ public class MainMenu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
-        db = Room.databaseBuilder(getApplicationContext(),
-                AppDatabase.class, "database-name").build();
+        db = Room.databaseBuilder(this,
+                AppDatabase.class, "PersonDatabase").build();
+
+        pd = db.personDao();
 
         prepareMenu();
         String[] keys = actions.keySet().toArray(new String[actions.keySet().size()]);

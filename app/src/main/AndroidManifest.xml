@@ -26,5 +26,4 @@
         <activity android:name=".activities.PersonList">
         </activity>
     </application>
-
 </manifest>
