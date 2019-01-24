@@ -7,4 +7,25 @@
         android:layout_height="match_parent"
         tools:context=".activities.AddPerson">
 
+    <android.support.design.widget.TextInputLayout
+            android:layout_width="218dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="152dp"
+            app:layout_constraintTop_toTopOf="parent" android:id="@+id/navnId"
+            app:layout_constraintEnd_toStartOf="@+id/buttonId" android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp">
+
+        <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/navnIdHint" android:inputType="text" android:id="@+id/navnInputId"/>
+    </android.support.design.widget.TextInputLayout>
+    <Button
+            android:layout_width="53dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonId" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp" android:text="@string/addButton" android:layout_marginTop="158dp"
+            app:layout_constraintTop_toTopOf="parent"/>
 </android.support.constraint.ConstraintLayout>
