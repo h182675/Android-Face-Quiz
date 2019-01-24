@@ -36,7 +36,7 @@ public class MainMenu extends AppCompatActivity {
         setContentView(R.layout.activity_main_menu);
 
         db = Room.databaseBuilder(this,
-                AppDatabase.class, "PersonDatabase").build();
+                AppDatabase.class, "AppDatabase").build();
 
         pd = db.personDao();
 

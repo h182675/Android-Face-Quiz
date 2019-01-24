@@ -12,7 +12,7 @@ interface PersonDao {
     fun getAll(): List<Person>
 
     @Insert
-    fun insert(vararg person: Person)
+    fun insert(person: Person)
 
     @Delete
     fun delete(person: Person)
