@@ -1,5 +1,13 @@
 package com.android.oblig.modules
 
-import android.media.Image
+import android.arch.persistence.room.ColumnInfo
+import android.arch.persistence.room.Entity
+import android.arch.persistence.room.PrimaryKey
 
-class Person(var name: String?, var picture: Image?)
+
+@Entity
+data class Person(
+    @PrimaryKey var id:Int,
+    @ColumnInfo(name = "name") var name: String,
+    @ColumnInfo(name = "picture", typeAffinity = ColumnInfo.BLOB) var picture: ByteArray?
+    )
