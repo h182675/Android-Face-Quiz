@@ -22,7 +22,6 @@ public class MainMenu extends AppCompatActivity {
 
     public final static String debugTag = "ViewSamples";
     public static AppDatabase db;
-    private PersonDao pd =null;
 
     void prepareMenu() {
         addMenuItem("AddPerson", AddPerson.class);
@@ -35,10 +34,9 @@ public class MainMenu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
-        db = Room.databaseBuilder(this,
-                AppDatabase.class, "AppDatabase").build();
 
-        pd = db.personDao();
+        db = Room.databaseBuilder(getBaseContext(),
+                AppDatabase.class, "AppDatabase").allowMainThreadQueries().build();
 
         prepareMenu();
         String[] keys = actions.keySet().toArray(new String[actions.keySet().size()]);
