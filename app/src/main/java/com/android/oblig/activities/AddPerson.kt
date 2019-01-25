@@ -11,6 +11,10 @@ import com.android.oblig.R
 
 class AddPerson : AppCompatActivity() {
 
+    companion object{
+        private val REQUEST_SELECT_IMAGE_IN_ALBUM = 1
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_person)
@@ -31,9 +35,7 @@ class AddPerson : AppCompatActivity() {
             }
         }
 
-        companion object{
-            private val REQUEST_SELECT_IMAGE_IN_ALBUM = 1
-        }
+
         //When choose image button is clicked...
         if(choose != null){
             choose.setOnClickListener{
