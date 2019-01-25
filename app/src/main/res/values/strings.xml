@@ -2,5 +2,7 @@
     <string name="app_name">QuizApp</string>
     <string name="title_activity_main_menu">MainMenu</string>
     <string name="navnIdHint">Name</string>
-    <string name="addButton">+</string>
+    <string name="addButton">Add person</string>
+    <string name="chooseImage">Choose image</string>
+    <string name="picture">picture</string>
 </resources>
