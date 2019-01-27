@@ -49,7 +49,7 @@ class PersonList : AppCompatActivity() {
     }
 }
 
-class PersonAdapter(private val context: Context,
+private class PersonAdapter(private val context: Context,
                     private val dataSource:MutableList<Person>):BaseAdapter(){
 
     private val inflater: LayoutInflater
