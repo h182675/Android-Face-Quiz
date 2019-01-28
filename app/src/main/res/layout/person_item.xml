@@ -21,6 +21,8 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
             android:textSize="30sp"
             android:layout_weight="8"
+            android:maxLength="12"
+            android:ellipsize="end"
             android:id="@+id/person_item_name"/>
     <Button
             android:text="@string/deleteButton"

@@ -3,15 +3,16 @@ package com.android.oblig.activities
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.android.oblig.R
 import com.android.oblig.modules.Person
+import com.android.oblig.modules.PersonUtil
 
 
 class PersonList : AppCompatActivity() {
@@ -19,7 +20,6 @@ class PersonList : AppCompatActivity() {
     var personList:MutableList<Person> = ArrayList<Person>()
 
 
-    private lateinit var listView: ListView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_person_list)
@@ -66,18 +66,18 @@ private class PersonAdapter(private val context: Context,
         // Get person
         val person = getItem(position) as Person
 
-        // Populate view objects
+        // Populate views objects
         // Convert bitmap from bytearray
-        // Set default image for now
-        //TODO: Get image from byteArray
-        val bitmapImage = ContextCompat.getDrawable(context,R.drawable.defaultpicture)
-        personImageView.setImageDrawable(bitmapImage)
+        val bitmapImage = PersonUtil.byteArrayToBitmap(person.picture)
+        personImageView.setImageBitmap(bitmapImage)
         // Name
         val personName:String = person.name
         personNameView.text = personName
         // Button
         personDeleteBtn.setOnClickListener{
-            //TODO: Implement DeleteBtn:Remove person from list and db
+            MainMenu.db.personDao().delete(person)
+            dataSource.removeAt(position)
+            this.notifyDataSetChanged()
         }
 
 
