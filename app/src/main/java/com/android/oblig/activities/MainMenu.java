@@ -11,7 +11,6 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import com.android.oblig.R;
 import com.android.oblig.modules.AppDatabase;
-import com.android.oblig.modules.PersonDao;
 
 import java.util.HashMap;
 import java.util.Map;
