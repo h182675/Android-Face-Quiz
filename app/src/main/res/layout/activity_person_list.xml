@@ -6,7 +6,7 @@
         android:layout_height="fill_parent" >
     <Button
             android:id="@+id/add_person_btn"
-            android:text="@string/addButton"
+            android:text="@string/add_Person_Btn"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:onClick="addItems"/>

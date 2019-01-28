@@ -40,8 +40,9 @@ public class AddPerson extends AppCompatActivity {
         if(editText.getText().length() > 0) {
             Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 30, baos);
             byte[] imageInByte = baos.toByteArray();
+
             Person newPerson = new Person(0, editText.getText().toString(), imageInByte);
             MainMenu.db.personDao().insert(newPerson);
 

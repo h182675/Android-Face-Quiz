@@ -35,8 +35,8 @@
             android:layout_marginRight="8dp" android:layout_marginStart="8dp"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"/>
     <ImageView
-            android:layout_width="133dp"
-            android:layout_height="131dp" app:srcCompat="@drawable/defaultpicture"
+            android:layout_width="160dp"
+            android:layout_height="190dp" app:srcCompat="@drawable/defaultpicture"
             android:id="@+id/imageView" android:layout_marginTop="56dp"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="8dp" android:layout_marginRight="8dp"

@@ -1,9 +1,11 @@
 <resources>
     <string name="app_name">QuizApp</string>
-    <string name="title_activity_main_menu">MainMenu</string>
+    <string name="title_activity_main_menu">Quiz App</string>
     <string name="navnIdHint">Name</string>
-    <string name="addButton">Add person</string>
+    <string name="add_Person_Btn">Add person</string>
     <string name="deleteButton">Delete</string>
     <string name="chooseImage">Choose image</string>
     <string name="picture">picture</string>
+    <string name="Quiz_Menu_choice">Start Quiz</string>
+    <string name="Person_List_Menu_choice">Person List</string>
 </resources>

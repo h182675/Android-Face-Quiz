@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">QuizApp</string>
+    <string name="title_activity_main_menu">QuizApp</string>
+    <string name="navnIdHint">Navn</string>
+    <string name="add_Person_Btn">Legg til</string>
+    <string name="deleteButton">Slett</string>
+    <string name="chooseImage">Velg bilde</string>
+    <string name="picture">bilde</string>
+    <string name="Quiz_Menu_choice">Start Quiz</string>
+    <string name="Person_List_Menu_choice">Person Liste</string>
+</resources>

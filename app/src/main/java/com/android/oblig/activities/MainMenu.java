@@ -2,6 +2,7 @@ package com.android.oblig.activities;
 
 import android.arch.persistence.room.Room;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -23,9 +24,9 @@ public class MainMenu extends AppCompatActivity {
     public static AppDatabase db;
 
     void prepareMenu() {
-        addMenuItem("AddPerson", AddPerson.class);
-        addMenuItem("Database", PersonList.class);
-        addMenuItem("Quiz", Quiz.class);
+        Resources res = getResources();
+        addMenuItem((res.getString(R.string.Person_List_Menu_choice)), PersonList.class);
+        addMenuItem((res.getString(R.string.Quiz_Menu_choice)), Quiz.class);
     }
 
     @Override
