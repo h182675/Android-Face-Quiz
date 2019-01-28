@@ -3,7 +3,6 @@ package com.android.oblig.activities
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.BitmapFactory
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -43,7 +42,7 @@ class PersonList : AppCompatActivity() {
 
         var addPersonBtn:Button = findViewById<Button>(R.id.add_person_btn)
         addPersonBtn.setOnClickListener {
-            val intent = Intent(this,AddPerson::class.java)
+            val intent = Intent(this, AddPerson::class.java)
             startActivity(intent)
         }
     }

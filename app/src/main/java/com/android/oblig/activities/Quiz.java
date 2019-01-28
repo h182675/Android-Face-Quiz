@@ -66,9 +66,9 @@ public class Quiz extends AppCompatActivity {
      */
     private Person getRandomPerson(){
         Random random = new Random();
-        int a = random.nextInt(list.size()) + 1;
+        int a = random.nextInt(list.size()) + 0;
         for(Person b : list){
-            if(b.getId() == a) {
+            if(list.indexOf(b) == a) {
                 return b;
             }
         }
@@ -113,10 +113,10 @@ public class Quiz extends AppCompatActivity {
         nameGuess = (EditText) findViewById(R.id.editText);
         String name = (String) nameGuess.getText().toString().toUpperCase();
 
-        if(name.equals(currentName)&&!wrongAnswer){
+        if(name.equals(currentName.toUpperCase())&&!wrongAnswer){
             score+=1;
             clearAndSetValues();
-        }else if(name.equals(currentName)) {
+        }else if(name.equals(currentName.toUpperCase())) {
             wrongAnswer = false;
             nameGuess.setTextColor(Color.BLACK);
             nameGuess.setEnabled(true);

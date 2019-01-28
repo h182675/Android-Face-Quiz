@@ -7,46 +7,36 @@
         android:layout_height="match_parent"
         tools:context=".activities.AddPerson">
 
-    <android.support.design.widget.TextInputLayout
-            android:layout_width="259dp"
-            android:layout_height="54dp"
-            android:id="@+id/navnId"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp" android:layout_marginTop="244dp" app:layout_constraintTop_toTopOf="parent"
-    >
-
-        <android.support.design.widget.TextInputEditText
-                android:layout_width="259dp"
-                android:layout_height="wrap_content"
-                android:hint="@string/navnIdHint" android:inputType="text" android:id="@+id/navnInputId"/>
-    </android.support.design.widget.TextInputLayout>
-    <Button
-            android:layout_width="259dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/buttonId"
-            android:text="@string/addButton"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="8dp" android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp" android:layout_marginRight="8dp" android:layout_marginTop="56dp"
-            app:layout_constraintTop_toBottomOf="@+id/navnId"/>
-    <Button
-            android:text="@string/chooseImage"
-            android:layout_width="259dp"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="8dp" android:layout_marginStart="8dp" android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/buttonId" android:id="@+id/chooseImageId"
-            android:layout_marginBottom="16dp" app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintVertical_bias="0.093" android:layout_height="wrap_content"/>
     <ImageView
-            android:layout_width="265dp"
-            android:layout_height="137dp" app:srcCompat="?attr/selectableItemBackground"
-            android:id="@+id/imageId" android:layout_marginEnd="128dp"
-            android:layout_marginRight="128dp" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="127dp"
-            android:layout_marginStart="127dp" android:layout_marginTop="84dp"
-            app:layout_constraintTop_toTopOf="parent" android:layout_marginBottom="57dp"
-            app:layout_constraintBottom_toTopOf="@+id/navnId" android:background="@color/colorPrimary"
-            android:contentDescription="@string/picture"/>
+            android:layout_width="253dp"
+            android:layout_height="371dp" app:srcCompat="@drawable/defaultpicture"
+            android:id="@+id/imageView2" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp" android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"/>
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/editText2" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2" android:layout_marginStart="8dp"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp" android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginRight="8dp"
+            android:hint="Name"/>
+    <Button
+            android:text="Gallery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button2" app:layout_constraintEnd_toStartOf="@+id/button3" android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp" app:layout_constraintStart_toStartOf="@+id/editText2"
+            android:layout_marginLeft="8dp" android:layout_marginStart="8dp" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/editText2" android:onClick="openGallery"/>
+    <Button
+            android:text="Add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button3" app:layout_constraintEnd_toEndOf="@+id/editText2" android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/editText2" android:onClick="addPerson"/>
 </android.support.constraint.ConstraintLayout>
