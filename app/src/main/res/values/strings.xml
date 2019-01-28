@@ -8,4 +8,5 @@
     <string name="picture">picture</string>
     <string name="Quiz_Menu_choice">Start Quiz</string>
     <string name="Person_List_Menu_choice">Person List</string>
+    <string name="check_answer">Check Name</string>
 </resources>
