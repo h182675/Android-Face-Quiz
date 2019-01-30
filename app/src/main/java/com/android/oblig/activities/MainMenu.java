@@ -42,7 +42,9 @@ public class MainMenu extends AppCompatActivity {
         String[] keys = actions.keySet().toArray(new String[actions.keySet().size()]);
 
         ListView av = (ListView) findViewById(R.id.menu_list);
-        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, keys);
+        //ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, keys);
+        MainMenuAdapter adapter = new MainMenuAdapter(this,keys);
+
 
         av.setAdapter(adapter);
         av.setOnItemClickListener(new AdapterView.OnItemClickListener() {
