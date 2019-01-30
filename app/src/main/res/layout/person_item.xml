@@ -18,7 +18,7 @@
             android:paddingLeft="2dp"
             android:paddingRight="2dp"
             android:gravity="bottom"
-            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
             android:textSize="30sp"
             android:layout_weight="8"
             android:maxLength="12"
