@@ -12,6 +12,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import com.android.oblig.R;
 import com.android.oblig.modules.AppDatabase;
+import com.android.oblig.modules.Preferences;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,17 +24,27 @@ public class MainMenu extends AppCompatActivity {
     public final static String debugTag = "ViewSamples";
     public static AppDatabase db;
 
+
     void prepareMenu() {
         Resources res = getResources();
         addMenuItem((res.getString(R.string.Person_List_Menu_choice)), PersonList.class);
         addMenuItem((res.getString(R.string.Quiz_Menu_choice)), Quiz.class);
     }
 
+    // Preferences
+    String userName;
+    Preferences preferences = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
+        // Preferences
+        preferences = new Preferences(this);
+        if(preferences.getUserName()=="default"){
+            //Do popup - create/login as user
+        }
 
         db = Room.databaseBuilder(getBaseContext(),
                 AppDatabase.class, "AppDatabase").allowMainThreadQueries().build();
