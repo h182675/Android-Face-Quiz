@@ -54,6 +54,7 @@ public class Quiz extends AppCompatActivity {
         list = MainMenu.db.personDao().getAll();
 
         scoreBoard.setText("Score: " + score + "/" + numberOfattempts);
+
         if(list.size() > 0){
             setPersonValues();
         }
@@ -66,7 +67,7 @@ public class Quiz extends AppCompatActivity {
      */
     private Person getRandomPerson(){
         Random random = new Random();
-        int a = random.nextInt(list.size()) + 0;
+        int a = random.nextInt(list.size());
         for(Person b : list){
             if(list.indexOf(b) == a) {
                 return b;
