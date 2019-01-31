@@ -43,7 +43,7 @@ public class AddPerson extends AppCompatActivity {
             bitmap.compress(Bitmap.CompressFormat.JPEG, 30, baos);
             byte[] imageInByte = baos.toByteArray();
 
-            Person newPerson = new Person(0, editText.getText().toString(), imageInByte);
+            Person newPerson = new Person(0, editText.getText().toString().toUpperCase(), imageInByte);
             MainMenu.db.personDao().insert(newPerson);
 
             editText.setText("");

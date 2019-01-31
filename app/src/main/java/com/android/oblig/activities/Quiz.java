@@ -27,14 +27,14 @@ import java.util.Random;
 
 public class Quiz extends AppCompatActivity {
 
-    private int score = 0;
-    private String currentName;
+    public int score = 0;
+    public String currentName;
     private Person currentPerson;
     private int numberOfattempts = 0;
     private List<Person> list;
     private ImageView imageView;
     private TextView scoreBoard;
-    private EditText nameGuess;
+    public EditText nameGuess;
     private Button button;
     private boolean wrongAnswer = false;
 
@@ -55,7 +55,7 @@ public class Quiz extends AppCompatActivity {
 
         scoreBoard.setText("Score: " + score + "/" + numberOfattempts);
 
-        if(list.size() > 0){
+        if(list != null){
             setPersonValues();
         }
 
@@ -65,21 +65,23 @@ public class Quiz extends AppCompatActivity {
      *  Return a random person from list
      * @return Person
      */
-    private Person getRandomPerson(){
-        Random random = new Random();
-        int a = random.nextInt(list.size());
-        for(Person b : list){
-            if(list.indexOf(b) == a) {
-                return b;
+    public Person getRandomPerson(){
+        if(!(list == null)){
+            Random random = new Random();
+            int a = random.nextInt(list.size()) + 0;
+            for(Person b : list){
+                if(list.indexOf(b) == a) {
+                    return b;
+                }
             }
         }
-        return list.get(0);
+        return null;
     }
 
     /**
      * Giving the view object values
      */
-    private void setPersonValues(){
+    public void setPersonValues(){
         currentPerson = getRandomPerson();
         currentName = currentPerson.getName();
 
@@ -114,19 +116,28 @@ public class Quiz extends AppCompatActivity {
         nameGuess = (EditText) findViewById(R.id.editText);
         String name = (String) nameGuess.getText().toString().toUpperCase();
 
-        if(name.equals(currentName.toUpperCase())&&!wrongAnswer){
-            score+=1;
+        if(!wrongAnswer && correctAnswer(name)){
             clearAndSetValues();
-        }else if(name.equals(currentName.toUpperCase())) {
+        }else if(name.equals(currentName)){
             wrongAnswer = false;
             nameGuess.setTextColor(Color.BLACK);
             nameGuess.setEnabled(true);
             clearAndSetValues();
-        }else{
-                nameGuess.setText(currentName);
-                nameGuess.setTextColor(Color.RED);
-                nameGuess.setEnabled(false);
-                wrongAnswer = true;
-            }
+        }else {
+            nameGuess.setText(currentName);
+            nameGuess.setTextColor(Color.RED);
+            nameGuess.setEnabled(false);
+            wrongAnswer = true;
+        }
     }
+
+    public boolean correctAnswer(String guess){
+        if((guess != null) && guess.equals(currentName)){
+            score++;
+            return true;
+        }
+        return false;
+    }
+
+
 }

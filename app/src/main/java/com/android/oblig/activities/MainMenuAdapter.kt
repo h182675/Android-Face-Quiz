@@ -16,6 +16,8 @@ class MainMenuAdapter(private val context: Context, private val dataSource:Array
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val rowView = inflater.inflate(R.layout.main_menu_item,parent,false)
 
+        val text:String = getItem(position)
+
         val textView = rowView.findViewById<TextView>(R.id.menu_row_item)
 
         textView.text = getItem(position)
