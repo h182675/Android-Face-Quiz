@@ -11,11 +11,8 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
+import android.widget.*;
 import com.android.oblig.R;
-import android.widget.EditText;
-import android.widget.TextView;
 import com.android.oblig.modules.AppDatabase;
 import com.android.oblig.modules.Person;
 
@@ -27,14 +24,14 @@ import java.util.Random;
 
 public class Quiz extends AppCompatActivity {
 
-    private int score = 0;
-    private String currentName;
+    public int score = 0;
+    public String currentName;
     private Person currentPerson;
-    private int numberOfattempts = 0;
+    private int numberOfAttempts = 0;
     private List<Person> list;
     private ImageView imageView;
     private TextView scoreBoard;
-    private EditText nameGuess;
+    public EditText nameGuess;
     private Button button;
     private boolean wrongAnswer = false;
 
@@ -50,60 +47,28 @@ public class Quiz extends AppCompatActivity {
 
         imageView = (ImageView) findViewById(R.id.imageView);
         scoreBoard = (TextView) findViewById(R.id.score);
+        button = (Button) findViewById(R.id.button);
+        nameGuess = (EditText) findViewById(R.id.editText);
+
 
         list = MainMenu.db.personDao().getAll();
+        scoreBoard.setText("Score: ");
 
-        scoreBoard.setText("Score: " + score + "/" + numberOfattempts);
-
-        if(list.size() > 0){
+        if(list != null && list.size() != 0){
             setPersonValues();
         }
 
-    }
-
-    /**
-     *  Return a random person from list
-     * @return Person
-     */
-    private Person getRandomPerson(){
-        Random random = new Random();
-        int a = random.nextInt(list.size());
-        for(Person b : list){
-            if(list.indexOf(b) == a) {
-                return b;
-            }
-        }
-        return list.get(0);
     }
 
     /**
      * Giving the view object values
      */
-    private void setPersonValues(){
+    public void setPersonValues(){
         currentPerson = getRandomPerson();
         currentName = currentPerson.getName();
 
         Bitmap bitmap = BitmapFactory.decodeByteArray(currentPerson.getPicture(), 0, currentPerson.getPicture().length);
-        imageView = (ImageView) findViewById(R.id.imageView);
         imageView.setImageBitmap(bitmap);
-    }
-
-    /**
-     * clearing and updating existing values
-     */
-    public void clearAndSetValues(){
-        numberOfattempts++;
-        scoreBoard.setText("Score: " + score + "/" + numberOfattempts);
-        nameGuess.setText("");
-
-        if(list.size() > 0){
-            setPersonValues();
-        }else{
-            button = (Button) findViewById(R.id.button);
-            button.setEnabled(false);
-            nameGuess.setEnabled(false);
-            imageView.setVisibility(View.INVISIBLE);
-        }
     }
 
     /**
@@ -111,22 +76,64 @@ public class Quiz extends AppCompatActivity {
      * @param view
      */
     public void onNameEntered(View view){
-        nameGuess = (EditText) findViewById(R.id.editText);
         String name = (String) nameGuess.getText().toString().toUpperCase();
 
-        if(name.equals(currentName.toUpperCase())&&!wrongAnswer){
-            score+=1;
-            clearAndSetValues();
-        }else if(name.equals(currentName.toUpperCase())) {
+        if(!wrongAnswer && correctAnswer(name)){
+            clearAndSetNewValues();
+        }else if(name.equals(currentName)){
             wrongAnswer = false;
             nameGuess.setTextColor(Color.BLACK);
             nameGuess.setEnabled(true);
-            clearAndSetValues();
-        }else{
-                nameGuess.setText(currentName);
-                nameGuess.setTextColor(Color.RED);
-                nameGuess.setEnabled(false);
-                wrongAnswer = true;
-            }
+            clearAndSetNewValues();
+        }else {
+            nameGuess.setText(currentName);
+            nameGuess.setTextColor(Color.RED);
+            nameGuess.setEnabled(false);
+            wrongAnswer = true;
+        }
     }
+
+    /**
+     *  Return a random person from list
+     * @return Person
+     */
+    public Person getRandomPerson(){
+        if(!(list == null)){
+            Random random = new Random();
+            int a = random.nextInt(list.size()) + 0;
+            for(Person b : list){
+                if(list.indexOf(b) == a) {
+                    return b;
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
+     * clearing and updating existing values
+     */
+    public void clearAndSetNewValues(){
+        numberOfAttempts++;
+        scoreBoard.setText("Score: " + score + "/" + numberOfAttempts);
+        nameGuess.setText("");
+
+        if(list.size() > 0){
+            setPersonValues();
+        }else{
+            button.setEnabled(false);
+            nameGuess.setEnabled(false);
+            imageView.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    public boolean correctAnswer(String guess){
+        if((guess != null) && guess.equals(currentName)){
+            score++;
+            return true;
+        }
+        return false;
+    }
+
+
 }
