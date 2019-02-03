@@ -16,10 +16,19 @@
         <activity android:name=".activities.LoginPopup">
         </activity>
         <activity android:name=".activities.AddPerson">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".activities.PersonList" />
         </activity>
         <activity android:name=".activities.PersonList">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".activities.MainMenu" />
         </activity>
         <activity android:name=".activities.Quiz">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".activities.MainMenu" />
         </activity>
         <activity
                 android:name=".activities.MainMenu"
