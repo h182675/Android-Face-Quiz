@@ -9,4 +9,8 @@
     <string name="Quiz_Menu_choice">Start Quiz</string>
     <string name="Person_List_Menu_choice">Person List</string>
     <string name="check_answer">Check Name</string>
+    <string name="login">Login</string>
+    <string name="confirm_username">Ok</string>
+    <string name="login_help_text">Username</string>
+    <string name="cancel_button">Cancel</string>
 </resources>
