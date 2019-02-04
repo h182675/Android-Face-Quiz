@@ -7,8 +7,9 @@ import android.content.SharedPreferences
 class Preferences(context:Context) {
     val PREFS_FILENAME = "com.android.oblig.user_prefs"
     // Preference values
-    val USER_NAME = "user_name"
-    val THEME = "theme"
+    val USER_NAME = "Username"
+    val THEME = "Theme"
+    val HIGH_SCORE = "High score"
     val preferences: SharedPreferences = context.getSharedPreferences(PREFS_FILENAME,MODE_PRIVATE)
 
     var userName:String?
@@ -17,5 +18,8 @@ class Preferences(context:Context) {
     var theme:String?
         get() = preferences.getString(THEME,"default_theme")
         set(value) = preferences.edit().putString(THEME,value).apply()
+    var highScore:String?
+        get() = preferences.getString(HIGH_SCORE,"0")
+        set(value) = preferences.edit().putString(HIGH_SCORE,value.toString()).apply()
 }
 

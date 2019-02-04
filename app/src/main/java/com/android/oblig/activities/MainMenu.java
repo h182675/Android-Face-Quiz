@@ -9,6 +9,8 @@ import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -26,7 +28,7 @@ public class MainMenu extends AppCompatActivity {
     protected Map<String, Object> actions = new HashMap<>();
 
     public static AppDatabase db;
-
+    private static boolean shownWelcomeMessage = false;
 
     void prepareMenu() {
         Resources res = getResources();
@@ -49,6 +51,9 @@ public class MainMenu extends AppCompatActivity {
         if(userName=="default") {
             //Do popup - create/login as user if no user recorded
             newUserDialogBox(this,preferences);
+        }else if(!shownWelcomeMessage){
+            welcomeBackMessage(this,preferences);
+            shownWelcomeMessage = true;
         }
 
 
@@ -72,6 +77,44 @@ public class MainMenu extends AppCompatActivity {
         });
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()){
+            case R.id.menu_action_settings:{
+                startActivity(new Intent(this,Settings.class));
+            }
+        }
+
+        return true;
+    }
+
+
+    /** Dialog box for old users
+     *
+     * @param context
+     * @param preferences
+     */
+    public void welcomeBackMessage(final Context context, final Preferences preferences){
+        LayoutInflater li = LayoutInflater.from(this);
+        View prompt = (View) li.inflate(R.layout.welcome_message,null);
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+
+        alertDialogBuilder.setTitle("Welcome back, " + preferences.getUserName() + "!");
+        alertDialogBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        alertDialogBuilder.show();
+    }
+
     /** Dialog box for new users
      * 
      * @param context
@@ -79,13 +122,14 @@ public class MainMenu extends AppCompatActivity {
      */
     public void newUserDialogBox(final Context context, final Preferences preferences){
         LayoutInflater li = LayoutInflater.from(this);
-        View prompt = (View) li.inflate(R.layout.login_popup_fragment,null);
-        AlertDialog.Builder alertDialogbuilder = new AlertDialog.Builder(this);
+        View prompt = (View) li.inflate(R.layout.login_popup,null);
+        AlertDialog.Builder alertDialogbuilder = new AlertDialog.Builder(context);
 
         final EditText userEdit = (EditText) prompt.findViewById(R.id.user_name_input);
 
         alertDialogbuilder.setView(prompt);
         //alertDialogbuilder.setTitle(preferences.getUserName());
+        alertDialogbuilder.setTitle("Set a username");
         alertDialogbuilder.setCancelable(false).setPositiveButton(R.string.confirm_username, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
