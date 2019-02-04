@@ -3,6 +3,8 @@
           package="com.android.oblig">
 
     <uses-permission android:name="android.permission.CAMERA"/>
+    <!--Changed by Petter: Prevents application from being installed on devices with no camera-->
+    <uses-feature android:name="android.hardware.camera" android:required="false"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
