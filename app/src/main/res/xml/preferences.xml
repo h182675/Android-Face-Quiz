@@ -10,7 +10,7 @@
                 android:dialogTitle="@string/username_pref_dialog_title"
         />
         <Preference
-                android:key="Score"
+                android:key="High Score"
                 android:title="@string/score_pref_reset_title"
                 android:summary="@string/score_pref_summary"
                 android:dialogTitle="@string/score_pref_dialog_title"/>

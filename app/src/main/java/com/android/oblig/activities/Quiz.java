@@ -15,6 +15,7 @@ import android.widget.*;
 import com.android.oblig.R;
 import com.android.oblig.modules.AppDatabase;
 import com.android.oblig.modules.Person;
+import com.android.oblig.modules.Preferences;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -31,10 +32,11 @@ public class Quiz extends AppCompatActivity {
     private List<Person> list;
     private ImageView imageView;
     private TextView scoreBoard;
+    private TextView highScore;
     public EditText nameGuess;
     private Button button;
     private boolean wrongAnswer = false;
-
+    private Preferences preferences;
 
     /**
      * Instantiates variables
@@ -47,12 +49,15 @@ public class Quiz extends AppCompatActivity {
 
         imageView = (ImageView) findViewById(R.id.imageView);
         scoreBoard = (TextView) findViewById(R.id.score);
+        highScore = (TextView) findViewById(R.id.quiz_view_high_score);
         button = (Button) findViewById(R.id.button);
         nameGuess = (EditText) findViewById(R.id.editText);
-
+        preferences = new Preferences(this);
 
         list = MainMenu.db.personDao().getAll();
-        scoreBoard.setText("Score: ");
+        scoreBoard.setText("Score: 0");
+        int highscore = checkHighscore();
+        highScore.setText("High Score: " + highscore);
 
         if(list != null && list.size() != 0){
             setPersonValues();
@@ -117,6 +122,9 @@ public class Quiz extends AppCompatActivity {
         numberOfAttempts++;
         scoreBoard.setText("Score: " + score + "/" + numberOfAttempts);
         nameGuess.setText("");
+        //Update highscore
+        int highscore = checkHighscore();
+        highScore.setText("High Score: " + highscore);
 
         if(list.size() > 0){
             setPersonValues();
@@ -133,6 +141,15 @@ public class Quiz extends AppCompatActivity {
             return true;
         }
         return false;
+    }
+
+    public Integer checkHighscore(){
+        Integer highscore = preferences.getHighScore();
+        if(score > highscore){
+            highscore = score;
+            preferences.setHighScore(score);
+        }
+        return highscore;
     }
 
 
