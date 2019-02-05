@@ -28,7 +28,7 @@ public class Quiz extends AppCompatActivity {
     public String currentName;
     private Person currentPerson;
     private int numberOfAttempts = 0;
-    private List<Person> list;
+    public List<Person> list;
     private ImageView imageView;
     private TextView scoreBoard;
     public EditText nameGuess;
@@ -127,6 +127,11 @@ public class Quiz extends AppCompatActivity {
         }
     }
 
+    /**
+     *
+     * @param guess
+     * @return
+     */
     public boolean correctAnswer(String guess){
         if((guess != null) && guess.equals(currentName)){
             score++;
