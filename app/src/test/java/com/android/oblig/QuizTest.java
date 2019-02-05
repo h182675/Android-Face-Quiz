@@ -1,25 +1,31 @@
 package com.android.oblig;
 
 import com.android.oblig.activities.Quiz;
+import com.android.oblig.modules.Person;
+import org.junit.Before;
 import org.junit.Test;
+
+import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 
 
 public class QuizTest {
+    Quiz a;
+    String nameA;
+    String nameB;
+    String nameC;
 
-    @Test
-    public void getRandomPersonTest(){
-        Quiz a = new Quiz();
-        assertEquals(a.getRandomPerson(),null);
+    @Before
+    public void initialize() {
+        nameA = "ENDRE";
+        nameB = "ENDRE";
+        nameC = "DANIEL";
+        a = new Quiz();
     }
 
     @Test
     public void scoreIncreasing(){
-        Quiz a = new Quiz();
-        String nameA = "ENDRE";
-        String nameB = "ENDRE";
-        String nameC = "DANIEL";
         a.correctAnswer("");
         assertEquals(a.score, 0);
         a.currentName = nameB;
