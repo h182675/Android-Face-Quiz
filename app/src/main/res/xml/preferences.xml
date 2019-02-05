@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+        <EditTextPreference
+                android:key="Username"
+                android:title="@string/username_pref_title"
+                android:summary="@string/username_pref_summary"
+                android:dialogTitle="@string/username_pref_dialog_title"
+        />
+        <Preference
+                android:key="High Score"
+                android:title="@string/score_pref_reset_title"
+                android:summary="@string/score_pref_summary"
+                android:dialogTitle="@string/score_pref_dialog_title"/>
+</PreferenceScreen>
+
