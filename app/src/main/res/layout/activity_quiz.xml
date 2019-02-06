@@ -32,6 +32,7 @@
             android:layout_height="41dp"
             android:inputType="textCapCharacters"
             android:ems="10"
+            android:gravity="center"
             android:id="@+id/editText"
             android:layout_marginStart="8dp"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp" android:layout_marginEnd="8dp"
