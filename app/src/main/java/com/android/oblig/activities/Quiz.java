@@ -1,25 +1,17 @@
 package com.android.oblig.activities;
 
-import android.arch.persistence.room.Room;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.CycleInterpolator;
+import android.view.animation.TranslateAnimation;
 import android.widget.*;
 import com.android.oblig.R;
-import com.android.oblig.modules.AppDatabase;
 import com.android.oblig.modules.Person;
 import com.android.oblig.modules.Preferences;
-
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -39,7 +31,7 @@ public class Quiz extends AppCompatActivity {
     private Preferences preferences;
 
     /**
-     * Instantiates variables
+     * Instantiates variables from view
      * @param savedInstanceState
      */
     @Override
@@ -56,8 +48,8 @@ public class Quiz extends AppCompatActivity {
 
         list = MainMenu.db.personDao().getAll();
         scoreBoard.setText("Score: 0");
-        int highscore = checkHighscore();
-        highScore.setText("High Score: " + highscore);
+        int highScore = checkHighscore();
+        this.highScore.setText("High Score: " + highScore);
 
         if(list != null && list.size() != 0){
             setPersonValues();
@@ -84,17 +76,28 @@ public class Quiz extends AppCompatActivity {
         String name = (String) nameGuess.getText().toString().toUpperCase();
 
         if(!wrongAnswer && correctAnswer(name)){
-            clearAndSetNewValues();
+            nameGuess.setTextColor(Color.GREEN);
+            nameGuess.postOnAnimationDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    clearAndSetNewValues();
+                }
+            },1000);
         }else if(name.equals(currentName)){
             wrongAnswer = false;
-            nameGuess.setTextColor(Color.BLACK);
             nameGuess.setEnabled(true);
             clearAndSetNewValues();
         }else {
-            nameGuess.setText(currentName);
-            nameGuess.setTextColor(Color.RED);
+            nameGuess.startAnimation(shakeError());
             nameGuess.setEnabled(false);
-            wrongAnswer = true;
+            nameGuess.postOnAnimationDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    nameGuess.setText(currentName);
+                    wrongAnswer = true;
+                    nameGuess.setTextColor(Color.RED);
+                }
+            },1000);
         }
     }
 
@@ -119,10 +122,12 @@ public class Quiz extends AppCompatActivity {
      * clearing and updating existing values
      */
     public void clearAndSetNewValues(){
+        nameGuess.setTextColor(Color.BLACK);
+
         numberOfAttempts++;
         scoreBoard.setText("Score: " + score + "/" + numberOfAttempts);
         nameGuess.setText("");
-        //Update highscore
+        //Update high score
         int highscore = checkHighscore();
         highScore.setText("High Score: " + highscore);
 
@@ -157,5 +162,10 @@ public class Quiz extends AppCompatActivity {
         return highscore;
     }
 
-
+    public TranslateAnimation shakeError(){
+        TranslateAnimation shake = new TranslateAnimation(0,10,0,0);
+        shake.setDuration(300);
+        shake.setInterpolator(new CycleInterpolator(7));
+        return shake;
+    }
 }
