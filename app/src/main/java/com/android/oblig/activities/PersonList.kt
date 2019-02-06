@@ -48,8 +48,9 @@ class PersonList : AppCompatActivity() {
     }
 }
 
-private class PersonAdapter(private val context: Context,
+class PersonAdapter(private val context: Context,
                     private val dataSource:MutableList<Person>):BaseAdapter(){
+
 
     private val inflater: LayoutInflater
         = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
@@ -63,7 +64,7 @@ private class PersonAdapter(private val context: Context,
         val personDeleteBtn = rowView.findViewById<Button>(R.id.person_item_deleteBtn)
 
         // Get person
-        val person = getItem(position) as Person
+        val person = getItem(position)
 
         // Populate views objects
         // Convert bitmap from bytearray
@@ -74,17 +75,13 @@ private class PersonAdapter(private val context: Context,
         personNameView.text = personName
         // Button
         personDeleteBtn.setOnClickListener{
-            MainMenu.db.personDao().delete(person)
-            dataSource.removeAt(position)
+            PersonAdapterHelpers(dataSource).delete(person)
             this.notifyDataSetChanged()
         }
-
-
-
         return rowView
     }
 
-    override fun getItem(position: Int): Any {
+    override fun getItem(position: Int): Person {
         return dataSource.get(position)
     }
 
@@ -96,5 +93,22 @@ private class PersonAdapter(private val context: Context,
         return dataSource.size
     }
 
+
+
+}
+
+class PersonAdapterHelpers(val dataSource: MutableList<Person>){
+    fun delete(person: Person){
+        deletePersonFromList(person)
+        deletePersonFromDB(person)
+    }
+
+    fun deletePersonFromList(person: Person){
+        dataSource.remove(person)
+    }
+
+    fun deletePersonFromDB(person: Person){
+        MainMenu.db.personDao().delete(person)
+    }
 }
 
