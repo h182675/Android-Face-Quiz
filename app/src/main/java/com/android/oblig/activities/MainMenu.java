@@ -138,7 +138,7 @@ public class MainMenu extends AppCompatActivity {
                 if(userName != null){
                     int minLength = 6;
                     int maxLength = 12;
-                    boolean isCorrectLength = userName.length() < minLength || userName.length() > maxLength;
+                    boolean isCorrectLength = true;// userName.length() < minLength || userName.length() > maxLength;
                     if(!isCorrectLength) {
                         Toast.makeText(context,"Invalid username",Toast.LENGTH_SHORT);
                         newUserDialogBox(context, preferences);
