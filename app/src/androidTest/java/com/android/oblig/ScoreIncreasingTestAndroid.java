@@ -12,6 +12,7 @@ import androidx.test.rule.ActivityTestRule;
 import androidx.test.runner.AndroidJUnit4;
 import com.android.oblig.activities.MainMenu;
 import com.android.oblig.activities.PersonList;
+import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
@@ -60,13 +61,18 @@ public class ScoreIncreasingTestAndroid {
 
         SystemClock.sleep(750);
 
+        onView(withIndex(withId(R.id.person_item_name),2)).check(matches(withText("ENDRE")));
         onView(withIndex(withId(R.id.person_item_deleteBtn),2)).perform(click());
 
         SystemClock.sleep(750);
 
+        onView(withIndex(withId(R.id.person_item_name),1)).check(matches(withText("DANIEL")));
         onView(withIndex(withId(R.id.person_item_deleteBtn),1)).perform(click());
 
         SystemClock.sleep(750);
+
+        onView(withIndex(withId(R.id.person_item_name),0)).check(matches(withText("PETTER")));
+
 
     }
 
@@ -90,12 +96,14 @@ public class ScoreIncreasingTestAndroid {
 
     /**
      * Custom matcher getting the index of items with unique id without changing the classes.
+     * https://www.planetgeek.ch/2012/03/07/create-your-own-matcher/
      * @param matcher
      * @param index
      * @return View of the item at specified index
      */
     public static Matcher<View> withIndex(final Matcher<View> matcher, final int index) {
-        return new TypeSafeMatcher<View>() {
+        return new BaseMatcher<View>() {
+
             int currentIndex = 0;
 
             @Override
@@ -106,8 +114,8 @@ public class ScoreIncreasingTestAndroid {
             }
 
             @Override
-            public boolean matchesSafely(View view) {
-                return matcher.matches(view) && currentIndex++ == index;
+            public boolean matches(Object item) {
+                return matcher.matches(item) && currentIndex++ == index;
             }
         };
     }
