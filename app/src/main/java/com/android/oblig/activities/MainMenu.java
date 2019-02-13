@@ -136,11 +136,11 @@ public class MainMenu extends AppCompatActivity {
                 String userName = userEdit.getText().toString();
                 // check for valid input
                 if(userName != null){
-                    int minLength = 6;
+                    int minLength = 3;
                     int maxLength = 12;
                     boolean isCorrectLength = true;// userName.length() < minLength || userName.length() > maxLength;
                     if(!isCorrectLength) {
-                        Toast.makeText(context,"Invalid username",Toast.LENGTH_SHORT);
+                        Toast.makeText(context,"Invalid username length",Toast.LENGTH_SHORT).show();
                         newUserDialogBox(context, preferences);
                     }else{
                         preferences.setUserName(userName);

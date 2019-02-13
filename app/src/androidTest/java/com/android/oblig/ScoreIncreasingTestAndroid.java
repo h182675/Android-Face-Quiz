@@ -46,11 +46,23 @@ public class ScoreIncreasingTestAndroid {
         onView(withId(R.id.editText2)).perform(typeText("PETTER"), closeSoftKeyboard());
         onView(withId(R.id.button3)).perform(click());
 
+        onView(withId(R.id.editText2)).perform(typeText("DANIEL"), closeSoftKeyboard());
+        onView(withId(R.id.button3)).perform(click());
+
+        onView(withId(R.id.editText2)).perform(typeText("ENDRE"), closeSoftKeyboard());
+        onView(withId(R.id.button3)).perform(click());
+
         onView(withContentDescription(R.string.abc_action_bar_up_description)).perform(click());
 
-        SystemClock.sleep(1500);
+        SystemClock.sleep(750);
 
-        onView(withContentDescription(R.id.person_item_deleteBtn+"_0")).perform(click());
+        onView(withContentDescription(R.id.person_item_deleteBtn+"_2")).perform(click());
+
+        SystemClock.sleep(750);
+
+        onView(withContentDescription(R.id.person_item_deleteBtn+"_1")).perform(click());
+
+        SystemClock.sleep(750);
 
     }
 
