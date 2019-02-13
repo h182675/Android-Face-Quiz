@@ -65,13 +65,6 @@ class PersonAdapter(private val context: Context,
         // Get person
         val person = getItem(position)
 
-        //Set some id
-        val stringId = StringBuilder()
-        stringId.append(R.id.person_item_deleteBtn)
-        stringId.append("_")
-        stringId.append(position)
-        personDeleteBtn.contentDescription = stringId;
-
         // Populate views objects
         // Convert bitmap from bytearray
         val bitmapImage = PersonUtil.byteArrayToBitmap(person.picture)
