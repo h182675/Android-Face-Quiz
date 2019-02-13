@@ -1,7 +1,11 @@
 package com.android.oblig;
 
 import android.os.SystemClock;
+import android.widget.AdapterView;
+import androidx.test.espresso.DataInteraction;
 import androidx.test.espresso.Espresso;
+import androidx.test.espresso.ViewInteraction;
+import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.runner.AndroidJUnit4;
@@ -44,9 +48,9 @@ public class ScoreIncreasingTestAndroid {
 
         onView(withContentDescription(R.string.abc_action_bar_up_description)).perform(click());
 
-        onView(allOf(withId(R.id.person_item_deleteBtn),
-                withParentIndex(0)
-        )).perform(click());
+        SystemClock.sleep(1500);
+
+        onView(withContentDescription(R.id.person_item_deleteBtn+"_0")).perform(click());
 
     }
 
