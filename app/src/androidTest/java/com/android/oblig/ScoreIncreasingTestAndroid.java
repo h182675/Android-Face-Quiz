@@ -1,6 +1,7 @@
 package com.android.oblig;
 
 import android.os.SystemClock;
+import android.view.View;
 import android.widget.AdapterView;
 import androidx.test.espresso.DataInteraction;
 import androidx.test.espresso.Espresso;
@@ -11,6 +12,10 @@ import androidx.test.rule.ActivityTestRule;
 import androidx.test.runner.AndroidJUnit4;
 import com.android.oblig.activities.MainMenu;
 import com.android.oblig.activities.PersonList;
+import org.hamcrest.BaseMatcher;
+import org.hamcrest.Description;
+import org.hamcrest.Matcher;
+import org.hamcrest.TypeSafeMatcher;
 import org.junit.FixMethodOrder;
 import org.junit.Rule;
 import org.junit.Test;
@@ -56,15 +61,21 @@ public class ScoreIncreasingTestAndroid {
 
         SystemClock.sleep(750);
 
-        onView(withContentDescription(R.id.person_item_deleteBtn+"_2")).perform(click());
+        onView(withIndex(withId(R.id.person_item_name),2)).check(matches(withText("ENDRE")));
+        onView(withIndex(withId(R.id.person_item_deleteBtn),2)).perform(click());
 
         SystemClock.sleep(750);
 
-        onView(withContentDescription(R.id.person_item_deleteBtn+"_1")).perform(click());
+        onView(withIndex(withId(R.id.person_item_name),1)).check(matches(withText("DANIEL")));
+        onView(withIndex(withId(R.id.person_item_deleteBtn),1)).perform(click());
 
         SystemClock.sleep(750);
+
+        onView(withIndex(withId(R.id.person_item_name),0)).check(matches(withText("PETTER")));
+
 
     }
+
 
     @Test
     public void quizScoreIncrease(){
@@ -81,6 +92,32 @@ public class ScoreIncreasingTestAndroid {
         onView(withId(R.id.button)).perform(click());
         SystemClock.sleep(1500);
         onView(withId(R.id.score)).check(matches(withText(containsString("Score: 1/2"))));
+    }
+
+    /**
+     * Custom matcher getting the index of items with unique id without changing the classes.
+     * https://www.planetgeek.ch/2012/03/07/create-your-own-matcher/
+     * @param matcher
+     * @param index
+     * @return View of the item at specified index
+     */
+    public static Matcher<View> withIndex(final Matcher<View> matcher, final int index) {
+        return new BaseMatcher<View>() {
+
+            int currentIndex = 0;
+
+            @Override
+            public void describeTo(Description description) {
+                description.appendText("at index: ");
+                description.appendValue(index);
+                matcher.describeTo(description);
+            }
+
+            @Override
+            public boolean matches(Object item) {
+                return matcher.matches(item) && currentIndex++ == index;
+            }
+        };
     }
 
 }
