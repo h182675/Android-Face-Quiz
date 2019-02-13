@@ -11,7 +11,7 @@ import static org.junit.Assert.assertEquals;
 
 
 public class QuizTest {
-    Quiz a;
+    Quiz quiz;
     String nameA;
     String nameB;
     String nameC;
@@ -21,18 +21,20 @@ public class QuizTest {
         nameA = "ENDRE";
         nameB = "ENDRE";
         nameC = "DANIEL";
-        a = new Quiz();
+        quiz = new Quiz();
     }
 
     @Test
     public void scoreIncreasing(){
-        a.correctAnswer("");
-        assertEquals(a.score, 0);
-        a.currentName = nameB;
-        a.correctAnswer(nameA);
-        assertEquals(a.score, 1);
-        a.currentName = nameC;
-        assertEquals(a.score, 1);
+        quiz.correctAnswer("");
+        assertEquals(quiz.score, 0);
+        quiz.currentName = nameB;
+        quiz.correctAnswer(nameA);
+        assertEquals(quiz.score, 1);
+        quiz.currentName = nameC;
+        assertEquals(quiz.score, 1);
     }
+
+
 
 }

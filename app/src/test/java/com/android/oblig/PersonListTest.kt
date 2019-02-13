@@ -1,13 +1,9 @@
 package com.android.oblig
 
-import android.content.Context
-import android.graphics.Bitmap
-import com.android.oblig.activities.PersonAdapter
 import com.android.oblig.activities.PersonAdapterHelpers
 import com.android.oblig.modules.Person
 import org.junit.Before
 import org.junit.Test
-import org.junit.runner.RunWith
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
