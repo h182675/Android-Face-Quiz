@@ -23,6 +23,21 @@ class PersonList : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_person_list)
 
+        var addPersonBtn:Button = findViewById<Button>(R.id.add_person_btn)
+        addPersonBtn.setOnClickListener {
+            val intent = Intent(this, AddPerson::class.java)
+            startActivity(intent)
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        populateListView();
+
+    }
+
+    fun populateListView(){
         // Get the person list from db
         personList = MainMenu.db.personDao().getAll() as MutableList<Person>
 
@@ -39,12 +54,6 @@ class PersonList : AppCompatActivity() {
 
         // Link adapter to view
         listView.adapter = personAdapter
-
-        var addPersonBtn:Button = findViewById<Button>(R.id.add_person_btn)
-        addPersonBtn.setOnClickListener {
-            val intent = Intent(this, AddPerson::class.java)
-            startActivity(intent)
-        }
     }
 }
 
