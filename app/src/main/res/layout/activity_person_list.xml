@@ -9,7 +9,7 @@
             android:text="@string/add_Person_Btn"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:onClick="addItems"/>
+            />
     <ListView
             android:id="@+id/person_list"
             android:layout_width="fill_parent"
