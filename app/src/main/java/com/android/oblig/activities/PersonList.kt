@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,7 +38,7 @@ class PersonList : AppCompatActivity() {
 
     }
 
-    fun populateListView(){
+    private fun populateListView(){
         // Get the person list from db
         personList = MainMenu.db.personDao().getAll() as MutableList<Person>
 
@@ -47,7 +48,7 @@ class PersonList : AppCompatActivity() {
         }
 
         // Get view from id
-        var listView:ListView = findViewById(R.id.person_list)
+        var listView:ListView = this.findViewById(R.id.person_list)
 
         // Create adapter
         var personAdapter = PersonAdapter(this,personList)
@@ -60,37 +61,56 @@ class PersonList : AppCompatActivity() {
 class PersonAdapter(private val context: Context,
                     private val dataSource:MutableList<Person>):BaseAdapter(){
 
-
-    private val inflater: LayoutInflater
-        = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+    private lateinit var holder:ViewHolder
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        val rowView = inflater.inflate(R.layout.person_item,parent,false)
 
-        // Find item objects
-        val personImageView = rowView.findViewById<ImageView>(R.id.person_item_image)
-        val personNameView = rowView.findViewById<TextView>(R.id.person_item_name)
-        val personDeleteBtn = rowView.findViewById<Button>(R.id.person_item_deleteBtn)
+        var rowView = convertView
+
+        // If view has never been used before, create it
+        if(convertView == null){
+            val inflater: LayoutInflater
+                    = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+            rowView = inflater.inflate(R.layout.person_item,parent,false)
+            holder = ViewHolder(
+                rowView.findViewById(R.id.person_item_image),
+                rowView.findViewById(R.id.person_item_name),
+                rowView.findViewById(R.id.person_item_deleteBtn)
+            )
+            rowView.tag = holder
+        }
+        // Else if it has been used before, re-use it
+        else{
+            holder = convertView.tag as ViewHolder
+        }
+
         // Get person
         val person = getItem(position)
 
         // Populate views objects
         // Convert bitmap from bytearray
-        val bitmapImage = PersonUtil.byteArrayToBitmap(person.picture)
-        personImageView.setImageBitmap(bitmapImage)
+        holder.personImageView.setImageBitmap(PersonUtil.byteArrayToBitmap(person.picture))
         // Name
-        val personName:String = person.name
-        personNameView.text = personName
+        holder.personNameView.text = person.name
         // Button
-        personDeleteBtn.setOnClickListener{
+        holder.personDeleteBtn.setOnClickListener{
             PersonAdapterHelpers(dataSource).delete(person)
             this.notifyDataSetChanged()
         }
+
+
         return rowView
+
     }
 
+    private data class ViewHolder @JvmOverloads constructor(
+        val personImageView:ImageView,
+        val personNameView:TextView,
+        val personDeleteBtn:Button
+    )
+
     override fun getItem(position: Int): Person {
-        return dataSource.get(position)
+        return dataSource[position]
     }
 
     override fun getItemId(position: Int): Long {
