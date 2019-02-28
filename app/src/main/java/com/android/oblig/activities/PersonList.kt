@@ -99,7 +99,7 @@ class PersonAdapter(private val context: Context,
         }
 
 
-        return rowView
+        return rowView!!
 
     }
 
