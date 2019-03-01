@@ -24,7 +24,7 @@ class PersonList : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_person_list)
 
-        var addPersonBtn:Button = findViewById<Button>(R.id.add_person_btn)
+        val addPersonBtn:Button = findViewById<Button>(R.id.add_person_btn)
         addPersonBtn.setOnClickListener {
             val intent = Intent(this, AddPerson::class.java)
             startActivity(intent)
@@ -43,15 +43,15 @@ class PersonList : AppCompatActivity() {
         val personIdList = MainMenu.db.personDao().getAllPersonIds() as MutableList<Int>
 
         // Get view from id
-        var listView:ListView = this.findViewById(R.id.person_list)
+        val listView:ListView = this.findViewById(R.id.person_list)
 
         // Create adapter
-        var personAdapter = PersonAdapter(this,personIdList)
+        val personAdapter = PersonAdapter(this,personIdList)
 
         // Link adapter to view
         listView.adapter = personAdapter
     }
-    
+
 }
 
 class PersonAdapter(private val context: Context,

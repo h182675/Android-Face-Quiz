@@ -15,29 +15,29 @@ class PersonListTest {
     val person2 = Person(1,"person2",byteArray)
 
 
-    var testList:MutableList<Person> = arrayListOf()
+    var testList:MutableList<Int> = arrayListOf()
 
     @Before
     fun testBefore(){
-        testList.add(person1)
-        testList.add(person2)
+        testList.add(person1.id)
+        testList.add(person2.id)
     }
     @Test
     fun testDelete(){
         val paHelpers = PersonAdapterHelpers(testList)
         assertTrue(testList.size==2)
-        assertTrue(testList.contains(person1))
-        assertTrue(testList.contains(person2))
+        assertTrue(testList.contains(person1.id))
+        assertTrue(testList.contains(person2.id))
 
-        paHelpers.deletePersonFromList(person1)
+        paHelpers.deletePersonFromList(person1.id)
         assertTrue(testList.size==1)
-        assertFalse(testList.contains(person1))
-        assertTrue(testList.contains(person2))
+        assertFalse(testList.contains(person1.id))
+        assertTrue(testList.contains(person2.id))
 
-        paHelpers.deletePersonFromList(person2)
+        paHelpers.deletePersonFromList(person2.id)
         assertTrue(testList.size==0)
-        assertFalse(testList.contains(person1))
-        assertFalse(testList.contains(person2))
+        assertFalse(testList.contains(person1.id))
+        assertFalse(testList.contains(person2.id))
 
     }
 

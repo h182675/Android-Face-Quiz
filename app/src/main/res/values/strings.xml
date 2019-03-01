@@ -9,11 +9,9 @@
     <string name="Quiz_Menu_choice">Start Quiz</string>
     <string name="Person_List_Menu_choice">Person List</string>
     <string name="check_answer">Check Name</string>
-    <string name="login">Login</string>
-    <string name="confirm_username">Ok</string>
+    <string name="confirm_username">OK</string>
     <string name="login_help_text">Username</string>
     <string name="cancel_button">Cancel</string>
-    <string name="default_username">Username</string>
     <string name="username_pref_summary">This is your username</string>
     <string name="username_pref_dialog_title">Enter your username:</string>
     <string name="action_settings">Settings</string>

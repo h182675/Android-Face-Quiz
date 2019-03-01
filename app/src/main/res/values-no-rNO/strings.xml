@@ -9,11 +9,9 @@
     <string name="Quiz_Menu_choice">Start Quiz</string>
     <string name="Person_List_Menu_choice">Person Liste</string>
     <string name="check_answer">Sjekk Navn</string>
-    <string name="login">Logg inn</string>
-    <string name="confirm_username">Ok</string>
+    <string name="confirm_username">OK</string>
     <string name="login_help_text">Brukernavn</string>
     <string name="cancel_button">Avbryt</string>
-    <string name="default_username">Brukernavn</string>
     <string name="username_pref_summary">Dette er brukernavenet ditt</string>
     <string name="username_pref_dialog_title">Skriv inn ditt brukernavn:</string>
     <string name="action_settings">Innstillinger</string>

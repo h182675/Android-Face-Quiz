@@ -12,7 +12,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:singleLine="true"
+            android:inputType="text"
             android:id="@+id/user_name_input"
+            android:autofillHints=""
             android:hint="@string/login_help_text"><requestFocus/>
     </EditText>
 

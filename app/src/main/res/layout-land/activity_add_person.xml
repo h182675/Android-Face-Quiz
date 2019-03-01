@@ -38,6 +38,7 @@
             app:layout_constraintEnd_toStartOf="@+id/imageView2" android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp" app:layout_constraintHorizontal_bias="0.36">
         <Button
+                style="?android:attr/buttonBarButtonStyle"
                 android:text="@string/chooseImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -46,6 +47,7 @@
                 tools:layout_editor_absoluteY="454dp" app:layout_constraintEnd_toStartOf="@+id/button3"
                 android:layout_marginEnd="16dp" android:layout_marginRight="16dp"/>
         <Button
+                style="?android:attr/buttonBarButtonStyle"
                 android:text="@string/add_Person_Btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -57,7 +59,9 @@
     <android.support.design.widget.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:clickable="true" app:srcCompat="@android:drawable/ic_menu_camera"
+            android:clickable="true"
+            android:focusable="true"
+            app:srcCompat="@android:drawable/ic_menu_camera"
             android:onClick="takePicture"
             android:id="@+id/cameraButton" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
