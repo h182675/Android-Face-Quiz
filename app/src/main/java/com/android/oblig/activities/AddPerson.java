@@ -78,9 +78,7 @@ Consider moving permission check and request to mainmenu.java
     public void addPerson(View view){
         if(editText.getText().length() > 0) {
             Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 30, baos);
-            byte[] imageInByte = baos.toByteArray();
+            byte[] imageInByte = PersonUtil.INSTANCE.bitmapToByteArray(bitmap);
 
 
             Person newPerson = new Person(0, editText.getText().toString().toUpperCase(), imageInByte);
