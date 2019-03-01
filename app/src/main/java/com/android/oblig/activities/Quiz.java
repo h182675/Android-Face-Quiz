@@ -29,6 +29,8 @@ public class Quiz extends AppCompatActivity {
     private Button button;
     private boolean wrongAnswer = false;
     private Preferences preferences;
+    private String scoreString;
+    private String highScoreString;
 
     /**
      * Instantiates variables from view
@@ -39,6 +41,7 @@ public class Quiz extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
+
         imageView = (ImageView) findViewById(R.id.imageView);
         scoreBoard = (TextView) findViewById(R.id.score);
         highScore = (TextView) findViewById(R.id.quiz_view_high_score);
@@ -46,10 +49,13 @@ public class Quiz extends AppCompatActivity {
         nameGuess = (EditText) findViewById(R.id.editText);
         preferences = new Preferences(this);
 
+        scoreString = getResources().getString(R.string.score);
+        highScoreString = getResources().getString(R.string.high_score);
+
         list = MainMenu.db.personDao().getAll();
-        scoreBoard.setText("Score: 0");
+        scoreBoard.setText(scoreString + ": 0");
         int highScore = checkHighscore();
-        this.highScore.setText("High Score: " + highScore);
+        this.highScore.setText(highScoreString + ": " + highScore);
 
         if(list != null && list.size() != 0){
             setPersonValues();
@@ -125,11 +131,11 @@ public class Quiz extends AppCompatActivity {
         nameGuess.setTextColor(Color.BLACK);
 
         numberOfAttempts++;
-        scoreBoard.setText("Score: " + score + "/" + numberOfAttempts);
+        scoreBoard.setText(scoreString + ": " + score + "/" + numberOfAttempts);
         nameGuess.setText("");
         //Update high score
         int highscore = checkHighscore();
-        highScore.setText("High Score: " + highscore);
+        highScore.setText(highScoreString + ": " + highscore);
 
         if(list.size() > 0){
             setPersonValues();
@@ -154,7 +160,7 @@ public class Quiz extends AppCompatActivity {
     }
 
     public Integer checkHighscore(){
-        Integer highscore = preferences.getHighScore();
+        int highscore = preferences.getHighScore();
         if(score > highscore){
             highscore = score;
             preferences.setHighScore(score);

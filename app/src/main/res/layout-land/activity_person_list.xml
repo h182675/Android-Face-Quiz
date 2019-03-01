@@ -10,7 +10,9 @@
             android:text="@string/add_Person_Btn"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="50dp"
             android:layout_marginRight="50dp"
+
     />
 
     <ListView

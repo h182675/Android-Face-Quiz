@@ -8,7 +8,7 @@
         tools:context=".activities.Quiz">
 
     <TextView
-            android:text="Score: 0"
+            android:text="@string/Start_Score"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/score"

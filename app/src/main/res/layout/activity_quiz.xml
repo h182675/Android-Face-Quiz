@@ -8,7 +8,7 @@
         tools:context=".activities.Quiz">
 
     <TextView
-            android:text="Score: 0"
+            android:text="@string/Start_Score"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/score"
@@ -29,7 +29,7 @@
             app:layout_constraintTop_toTopOf="parent"/>
     <EditText
             android:layout_width="wrap_content"
-            android:layout_height="41dp"
+            android:layout_height="wrap_content"
             android:inputType="textCapCharacters"
             android:ems="10"
             android:gravity="center"

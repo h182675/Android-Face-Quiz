@@ -20,4 +20,8 @@
     <string name="score_pref_dialog_title">Er du sikker på at du vil tilbakestille poeng?</string>
     <string name="score_pref_summary">Tilbakestill beste resultat</string>
     <string name="username_pref_title">Brukernavn</string>
+    <string name="Start_Score">Poeng: 0</string>
+    <string name="person_image">Personbilde</string>
+    <string name="score">Poeng</string>
+    <string name="high_score">Beste Resultat</string>
 </resources>
