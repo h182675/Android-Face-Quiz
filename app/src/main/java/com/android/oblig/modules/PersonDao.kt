@@ -11,6 +11,12 @@ interface PersonDao {
     @Query("SELECT * FROM Person")
     fun getAll(): List<Person>
 
+    @Query("SELECT id FROM Person")
+    fun getAllPersonIds():List<Int>
+
+    @Query("SELECT * FROM Person WHERE id == :id")
+    fun findPersonById(id:Int):Person
+
     @Insert
     fun insert(person: Person)
 
