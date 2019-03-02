@@ -24,4 +24,7 @@
     <string name="person_image">Person Image</string>
     <string name="score">Score</string>
     <string name="high_score">High Score</string>
+    <string name="welcome_back">Welcome Back</string>
+    <string name="popup_insert_description">Insert a username</string>
+    <string name="toast_invalid_input_length">Invalid username length</string>
 </resources>

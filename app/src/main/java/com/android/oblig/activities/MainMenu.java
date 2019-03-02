@@ -105,8 +105,8 @@ public class MainMenu extends AppCompatActivity {
         View prompt = (View) li.inflate(R.layout.welcome_message,null);
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
 
-        alertDialogBuilder.setTitle("Welcome back, " + preferences.getUserName() + "!");
-        alertDialogBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+        alertDialogBuilder.setTitle(getResources().getString(R.string.welcome_back) + ", " + preferences.getUserName() + "!");
+        alertDialogBuilder.setPositiveButton(getResources().getString(R.string.confirm_username), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
@@ -129,8 +129,8 @@ public class MainMenu extends AppCompatActivity {
 
         alertDialogbuilder.setView(prompt);
         //alertDialogbuilder.setTitle(preferences.getUserName());
-        alertDialogbuilder.setTitle("Set a username");
-        alertDialogbuilder.setCancelable(false).setPositiveButton(R.string.confirm_username, new DialogInterface.OnClickListener() {
+        alertDialogbuilder.setTitle(getResources().getString(R.string.popup_insert_description));
+        alertDialogbuilder.setCancelable(false).setPositiveButton(getResources().getString(R.string.confirm_username), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 String userName = userEdit.getText().toString();
@@ -138,9 +138,9 @@ public class MainMenu extends AppCompatActivity {
                 if(userName != null){
                     int minLength = 3;
                     int maxLength = 12;
-                    boolean isCorrectLength = true;// userName.length() < minLength || userName.length() > maxLength;
+                    boolean isCorrectLength = userName.length()>minLength && userName.length()<maxLength;// userName.length() < minLength || userName.length() > maxLength;
                     if(!isCorrectLength) {
-                        Toast.makeText(context,"Invalid username length",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context,getResources().getString(R.string.toast_invalid_input_length),Toast.LENGTH_SHORT).show();
                         newUserDialogBox(context, preferences);
                     }else{
                         preferences.setUserName(userName);

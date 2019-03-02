@@ -24,4 +24,7 @@
     <string name="person_image">Personbilde</string>
     <string name="score">Poeng</string>
     <string name="high_score">Beste Resultat</string>
+    <string name="welcome_back">Velkommen Tilbake</string>
+    <string name="popup_insert_description">Skriv inn ett brukernavn</string>
+    <string name="toast_invalid_input_length">Ugyldig lengde på brukernavn</string>
 </resources>
