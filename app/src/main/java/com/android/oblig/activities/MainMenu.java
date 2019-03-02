@@ -63,11 +63,11 @@ public class MainMenu extends AppCompatActivity {
         prepareMenu();
         String[] keys = actions.keySet().toArray(new String[actions.keySet().size()]);
 
-        ListView av = (ListView) findViewById(R.id.menu_list);
+        ListView listView = (ListView) findViewById(R.id.menu_list);
         MainMenuAdapter adapter = new MainMenuAdapter(this,keys);
 
-        av.setAdapter(adapter);
-        av.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent,
                                     View view, int position, long id) {
@@ -135,7 +135,6 @@ public class MainMenu extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 String userName = userEdit.getText().toString();
                 // check for valid input
-                if(userName != null){
                     int minLength = 3;
                     int maxLength = 12;
                     boolean isCorrectLength = userName.length()>minLength && userName.length()<maxLength;// userName.length() < minLength || userName.length() > maxLength;
@@ -146,7 +145,7 @@ public class MainMenu extends AppCompatActivity {
                         preferences.setUserName(userName);
                         dialog.dismiss();
                     }
-                }
+
             }
         });
         alertDialogbuilder.setNegativeButton(R.string.cancel_button, new DialogInterface.OnClickListener() {

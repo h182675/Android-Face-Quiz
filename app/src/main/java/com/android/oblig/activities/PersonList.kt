@@ -57,6 +57,8 @@ class PersonList : AppCompatActivity() {
 class PersonAdapter(private val context: Context,
                     private val dataSource:MutableList<Int>):BaseAdapter() {
 
+    private val inflater: LayoutInflater
+            = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
     private lateinit var holder:ViewHolder
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
@@ -65,8 +67,6 @@ class PersonAdapter(private val context: Context,
 
         // If view has never been used before, create it
         if(convertView == null){
-            val inflater: LayoutInflater
-                    = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             rowView = inflater.inflate(R.layout.person_item,parent,false)
             holder = ViewHolder(
                 rowView.findViewById(R.id.person_item_image),

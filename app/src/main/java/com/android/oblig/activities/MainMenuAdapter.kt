@@ -13,14 +13,26 @@ class MainMenuAdapter(private val context: Context, private val dataSource:Array
     private val inflater: LayoutInflater
             = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
+    private lateinit var holder:ViewHolder
+
+
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        val rowView = inflater.inflate(R.layout.main_menu_item,parent,false)
 
-        val textView = rowView.findViewById<TextView>(R.id.menu_row_item)
+        var rowView = convertView
 
-        textView.text = getItem(position)
+        if(convertView == null) {
+            rowView = inflater.inflate(R.layout.main_menu_item, parent, false)
+            holder = ViewHolder(
+                rowView.findViewById(R.id.menu_row_item)
+            )
+            rowView.tag = holder
+        } else{
+            holder = convertView.tag as ViewHolder
+        }
+        holder.textView.text = getItem(position)
 
-        return rowView
+
+        return rowView!!
     }
 
     override fun getItem(position: Int): String {
@@ -34,4 +46,8 @@ class MainMenuAdapter(private val context: Context, private val dataSource:Array
     override fun getCount(): Int {
         return dataSource.size
     }
+
+    private data class ViewHolder(
+        val textView:TextView
+    )
 }

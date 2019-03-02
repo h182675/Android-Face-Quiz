@@ -1,11 +1,10 @@
 <resources>
     <string name="app_name">QuizApp</string>
     <string name="title_activity_main_menu">QuizApp</string>
-    <string name="navnIdHint">Navn</string>
+    <string name="name_hint">Navn</string>
     <string name="add_Person_Btn">Legg til</string>
     <string name="deleteButton">Slett</string>
     <string name="chooseImage">Velg bilde</string>
-    <string name="picture">bilde</string>
     <string name="Quiz_Menu_choice">Start Quiz</string>
     <string name="Person_List_Menu_choice">Person Liste</string>
     <string name="check_answer">Sjekk Navn</string>
@@ -27,4 +26,6 @@
     <string name="welcome_back">Velkommen Tilbake</string>
     <string name="popup_insert_description">Skriv inn ett brukernavn</string>
     <string name="toast_invalid_input_length">Ugyldig lengde på brukernavn</string>
+    <string name="add_person_pic_desc">Bilde av venn, kan endres</string>
+    <string name="quiz_pic_desc">Bilde av venn</string>
 </resources>

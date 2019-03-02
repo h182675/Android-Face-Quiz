@@ -15,6 +15,7 @@
             app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp" app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintHorizontal_bias="0.906" android:layout_marginTop="4dp"
+            android:contentDescription="@string/add_person_pic_desc"
             android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"/>
     <EditText
             android:layout_width="251dp"
@@ -23,7 +24,7 @@
             android:ems="10"
             android:id="@+id/editText2"
             app:layout_constraintStart_toStartOf="parent"
-            android:hint="@string/navnIdHint" android:layout_marginEnd="8dp"
+            android:hint="@string/name_hint" android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toStartOf="@+id/imageView2" android:layout_marginRight="8dp"
             app:layout_constraintHorizontal_bias="0.339" android:layout_marginTop="8dp"
             app:layout_constraintTop_toTopOf="parent" android:layout_marginBottom="8dp"
