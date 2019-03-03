@@ -23,9 +23,10 @@
     <string name="person_image">Person Image</string>
     <string name="score">Score</string>
     <string name="high_score">High Score</string>
-    <string name="welcome_back">Welcome Back</string>
+    <string name="welcome_back">Welcome back</string>
     <string name="popup_insert_description">Insert a username</string>
     <string name="toast_invalid_input_length">Invalid username length</string>
     <string name="add_person_pic_desc">Picture of friend, can be changed</string>
     <string name="quiz_pic_desc">Picture of friend</string>
+    <string name="person_added_toast">Person added</string>
 </resources>
