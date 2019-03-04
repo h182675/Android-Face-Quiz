@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">QuizApp</string>
+    <string name="title_activity_main_menu">QuizApp</string>
+    <string name="name_hint">Navn</string>
+    <string name="add_Person_Btn">Legg til</string>
+    <string name="deleteButton">Slett</string>
+    <string name="chooseImage">Velg bilde</string>
+    <string name="Quiz_Menu_choice">Start Quiz</string>
+    <string name="Person_List_Menu_choice">Person Liste</string>
+    <string name="check_answer">Sjekk Navn</string>
+    <string name="confirm_username">OK</string>
+    <string name="login_help_text">Brukernavn</string>
+    <string name="cancel_button">Avbryt</string>
+    <string name="username_pref_summary">Dette er brukernavnet ditt</string>
+    <string name="username_pref_dialog_title">Skriv inn ditt brukernavn:</string>
+    <string name="action_settings">Innstillinger</string>
+    <string name="score_pref_reset">Tilbakestill Poeng</string>
+    <string name="score_pref_reset_title">Beste resultat</string>
+    <string name="score_pref_dialog_title">Er du sikker på at du vil tilbakestille poeng?</string>
+    <string name="score_pref_summary">Tilbakestill beste resultat</string>
+    <string name="username_pref_title">Brukernavn</string>
+    <string name="Start_Score">Poeng: 0</string>
+    <string name="person_image">Personbilde</string>
+    <string name="score">Poeng</string>
+    <string name="high_score">Beste Resultat</string>
+    <string name="welcome_back">Velkommen tilbake</string>
+    <string name="popup_insert_description">Skriv inn ett brukernavn</string>
+    <string name="toast_invalid_input_length">Ugyldig lengde på brukernavn</string>
+    <string name="add_person_pic_desc">Bilde av venn, kan endres</string>
+    <string name="quiz_pic_desc">Bilde av venn</string>
+    <string name="person_added_toast">Person lagt til</string>
+</resources>
