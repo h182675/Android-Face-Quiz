@@ -88,6 +88,7 @@ Consider moving permission check and request to mainmenu.java
 
             Toast.makeText(this, getResources().getString(R.string.person_added_toast),
                     Toast.LENGTH_LONG).show();
+            imageView.setImageDrawable(getResources().getDrawable(R.drawable.defaultpicture));
         }
     }
 
