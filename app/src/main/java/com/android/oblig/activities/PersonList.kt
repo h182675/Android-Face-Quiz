@@ -3,9 +3,12 @@ package com.android.oblig.activities
 
 import android.content.Context
 import android.content.Intent
+import android.media.ThumbnailUtils
+import android.os.AsyncTask
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,14 +20,11 @@ import com.android.oblig.modules.PersonUtil
 
 class PersonList : AppCompatActivity() {
 
-    var personList:MutableList<Person> = ArrayList<Person>()
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_person_list)
 
-        var addPersonBtn:Button = findViewById<Button>(R.id.add_person_btn)
+        val addPersonBtn:Button = findViewById<Button>(R.id.add_person_btn)
         addPersonBtn.setOnClickListener {
             val intent = Intent(this, AddPerson::class.java)
             startActivity(intent)
@@ -40,27 +40,25 @@ class PersonList : AppCompatActivity() {
 
     private fun populateListView(){
         // Get the person list from db
-        personList = MainMenu.db.personDao().getAll() as MutableList<Person>
-
-        var personNames = mutableListOf<String>()
-        for(i in 0 until personList.size){
-            personNames.add(personList[i].name)
-        }
+        val personIdList = MainMenu.db.personDao().getAllPersonIds() as MutableList<Int>
 
         // Get view from id
-        var listView:ListView = this.findViewById(R.id.person_list)
+        val listView:ListView = this.findViewById(R.id.person_list)
 
         // Create adapter
-        var personAdapter = PersonAdapter(this,personList)
+        val personAdapter = PersonAdapter(this,personIdList)
 
         // Link adapter to view
         listView.adapter = personAdapter
     }
+
 }
 
 class PersonAdapter(private val context: Context,
-                    private val dataSource:MutableList<Person>):BaseAdapter(){
+                    private val dataSource:MutableList<Int>):BaseAdapter() {
 
+    private val inflater: LayoutInflater
+            = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
     private lateinit var holder:ViewHolder
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
@@ -69,8 +67,6 @@ class PersonAdapter(private val context: Context,
 
         // If view has never been used before, create it
         if(convertView == null){
-            val inflater: LayoutInflater
-                    = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             rowView = inflater.inflate(R.layout.person_item,parent,false)
             holder = ViewHolder(
                 rowView.findViewById(R.id.person_item_image),
@@ -85,11 +81,11 @@ class PersonAdapter(private val context: Context,
         }
 
         // Get person
-        val person = getItem(position)
+        val person = MainMenu.db.personDao().findPersonById(getItem(position))
 
         // Populate views objects
         // Convert bitmap from bytearray
-        holder.personImageView.setImageBitmap(PersonUtil.byteArrayToBitmap(person.picture))
+        holder.personImageView.setImageBitmap(PersonUtil.byteArrayToThumbnail(person.picture))
         // Name
         holder.personNameView.text = person.name
         // Button
@@ -98,18 +94,17 @@ class PersonAdapter(private val context: Context,
             this.notifyDataSetChanged()
         }
 
-
         return rowView!!
 
     }
 
-    private data class ViewHolder @JvmOverloads constructor(
+    private data class ViewHolder constructor(
         val personImageView:ImageView,
         val personNameView:TextView,
         val personDeleteBtn:Button
     )
 
-    override fun getItem(position: Int): Person {
+    override fun getItem(position: Int): Int {
         return dataSource[position]
     }
 
@@ -125,14 +120,14 @@ class PersonAdapter(private val context: Context,
 
 }
 
-class PersonAdapterHelpers(val dataSource: MutableList<Person>){
+class PersonAdapterHelpers(val dataSource: MutableList<Int>){
     fun delete(person: Person){
-        deletePersonFromList(person)
+        deletePersonFromList(person.id)
         deletePersonFromDB(person)
     }
 
-    fun deletePersonFromList(person: Person){
-        dataSource.remove(person)
+    fun deletePersonFromList(personId: Int){
+        dataSource.remove(personId)
     }
 
     fun deletePersonFromDB(person: Person){
