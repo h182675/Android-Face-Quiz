@@ -86,7 +86,7 @@ Consider moving permission check and request to mainmenu.java
 
             editText.setText("");
 
-            Toast.makeText(this, "Person added",
+            Toast.makeText(this, getResources().getString(R.string.person_added_toast),
                     Toast.LENGTH_LONG).show();
         }
     }
